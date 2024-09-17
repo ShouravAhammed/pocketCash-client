@@ -1,43 +1,44 @@
-import { useState } from "react";
+import { Tab, TabList, TabPanel, Tabs, Tab as ReactTab } from "react-tabs";
 import Profile from "../../Components/Overview/Profile";
 import Settings from "../../Components/Overview/Settings";
+import { useState } from "react";
 
 const Overview = () => {
-  const [checked, setChecked] = useState("tab1");
-  return (
-    <div
-      style={{ minHeight: "calc(100vh - 160px)" }}
-      className="mb-5 flex flex-col justify-center items-center"
-    >
-      <div className="tab-container my-10">
-        <input
-          checked={checked === "tab1"}
-          onChange={() => setChecked("tab1")}
-          type="radio"
-          name="tab"
-          id="tab1"
-          className="tab tab--1"
-        />
-        <label htmlFor="tab1" className="tab_label">
-          Profile
-        </label>
+  const [selectedTab, setSelectedTab] = useState(0); // Tracks active tab (0: Profile, 1: Settings)
 
-        <input
-          checked={checked === "tab2"}
-          onChange={() => setChecked("tab2")}
-          type="radio"
-          name="tab"
-          id="tab2"
-          className="tab tab--2"
-        />
-        <label htmlFor="tab2" className="tab_label">
-          Settings
-        </label>
-        <div className="indicator"></div>
-      </div>
-      <div className="min-h-96">
-        {checked === "tab1" ? <Profile /> : <Settings />}
-      </div>
+  return (
+    <div className="">
+      <Tabs selectedIndex={selectedTab} onSelect={(index) => setSelectedTab(index)}>
+        {/* Tab List */}
+        <TabList className={"flex items-center justify-center my-10"}>
+          <ReactTab
+            className={`text-base font-bold px-6 py-2 rounded-l-full tracking-wider cursor-pointer 
+              ${
+              selectedTab === 0 ? "bg-rose-500 text-white" : "bg-gray-100"
+            }`}
+          >
+            Profile
+          </ReactTab>
+          <ReactTab
+            className={`text-base font-bold px-6 py-2 rounded-r-full tracking-wider cursor-pointer 
+              ${
+                selectedTab === 1 ? "bg-rose-500 text-white" : "bg-gray-100"
+            }`}
+          >
+            Settings
+          </ReactTab>
+        </TabList>
+
+        {/* Tab Panels */}
+        <TabPanel>
+          <Profile />
+        </TabPanel>
+        <TabPanel>
+          <div className="lg:w-2/5 md:w-2/3 w-full mx-auto">
+           <Settings />
+          </div>
+        </TabPanel>
+      </Tabs>
     </div>
   );
 };

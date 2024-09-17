@@ -1,7 +1,7 @@
 import { FaRegUser } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";
 import { IoHomeSharp, IoNotifications } from "react-icons/io5";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import Swal from "sweetalert2";
 import { FcManager } from "react-icons/fc";
@@ -9,11 +9,15 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 import useRole from "../../Hooks/useRole";
 import useAuth from "../../Hooks/useAuth";
 import useNotification from "../../Hooks/useNotification";
+import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 
 const Navbar = () => {
   const { logout, update, setUpdate, currentUser } = useAuth();
   const { notifications } = useNotification();
   const { role } = useRole();
+  const navigate =  useNavigate();
+
+
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -32,6 +36,8 @@ const Navbar = () => {
           text: "Your have been logged Out.",
           icon: "success",
         });
+        // navigate 
+        navigate("/login")
       }
     });
   };
@@ -124,24 +130,11 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="md:mt-12 mt-5 md:static shadow-lg p-6 rounded-full navbar mx-0 text-gray-600">
+    <div className="md:mt-12 mt-5 md:static shadow-lg lg:px-6 lg:py-6 px-6 py-3 rounded-full navbar mx-0 text-gray-600">
       <div className="navbar-start">
         <div className="dropdown -ml-6 md:ml-0">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+          <div tabIndex={0} role="button" className="btn btn-circle btn-ghost lg:hidden mx-2">
+          <HiMiniBars3CenterLeft className="text-2xl" />
           </div>
           <ul
             tabIndex={0}
@@ -160,7 +153,7 @@ const Navbar = () => {
         {navLinks}
       </div>
       <div className="navbar-end">
-        <div className="dropdown">
+      <div className="dropdown">
           <div tabIndex={0} role="button" className="">
             <div className="w-12 rounded">
               <FcManager className="text-rose-500" size={40} />

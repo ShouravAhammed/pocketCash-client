@@ -1,8 +1,10 @@
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { currentUser, logout, update, setUpdate } = useAuth();
+  const navigate = useNavigate()
+  const { currentUser, logout, update, setUpdate} = useAuth();
   const handleLogout = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -21,6 +23,8 @@ const Profile = () => {
           text: "Your have been logged Out.",
           icon: "success",
         });
+        // navigate 
+        navigate("/login")
       }
     });
   };
