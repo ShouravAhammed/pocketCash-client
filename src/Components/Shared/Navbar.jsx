@@ -124,7 +124,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="md:mt-12 mt-5 md:static shadow-lg p-6 rounded navbar mx-0 text-gray-600">
+    <div className="md:mt-12 mt-5 md:static shadow-lg p-6 rounded-full navbar mx-0 text-gray-600">
       <div className="navbar-start">
         <div className="dropdown -ml-6 md:ml-0">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
