@@ -1,2 +1,2 @@
 -Live LInk: https://pocketcash-client-side.vercel.app                                         
--Server side Giothub Link: https://github.com/ShouravAhammed/pocketcash-server-side
+-Server side Github Link: https://github.com/ShouravAhammed/pocketcash-server-side
